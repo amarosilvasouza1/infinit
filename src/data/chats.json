@@ -1,0 +1,171 @@
+{
+  "chats": [
+    {
+      "id": "chat-demo-1",
+      "participants": ["amaro-founder", "fauder-user"],
+      "type": "direct",
+      "lastActivity": "2025-08-10T15:30:00.000Z",
+      "isOnline": true,
+      "unreadCount": 0,
+      "messages": [
+        {
+          "id": "msg-demo-1",
+          "senderId": "fauder-user",
+          "senderName": "Fauder",
+          "content": "Olá! Como você está?",
+          "type": "text",
+          "timestamp": "2025-08-10T15:25:00.000Z"
+        },
+        {
+          "id": "msg-demo-2",
+          "senderId": "amaro-founder",
+          "senderName": "Amaro",
+          "content": "Oi! Estou bem, obrigado! E você?",
+          "type": "text",
+          "timestamp": "2025-08-10T15:26:00.000Z"
+        },
+        {
+          "id": "msg-demo-3",
+          "senderId": "fauder-user",
+          "senderName": "Fauder",
+          "content": "Também estou bem! Que tal testarmos as funcionalidades do chat?",
+          "type": "text",
+          "timestamp": "2025-08-10T15:30:00.000Z"
+        }
+      ],
+      "createdAt": "2025-08-10T10:00:00.000Z",
+      "updatedAt": "2025-08-10T15:30:00.000Z",
+      "lastMessage": {
+        "id": "msg-demo-3",
+        "senderId": "fauder-user",
+        "senderName": "Fauder",
+        "content": "Também estou bem! Que tal testarmos as funcionalidades do chat?",
+        "type": "text",
+        "timestamp": "2025-08-10T15:30:00.000Z"
+      }
+    },
+    {
+      "id": "chat-demo-group",
+      "participants": ["amaro-founder", "fauder-user", "demo-user"],
+      "type": "group",
+      "name": "Grupo Infinit Dev",
+      "avatar": "🚀",
+      "description": "Desenvolvimento da plataforma Infinit",
+      "admins": ["amaro-founder"],
+      "createdBy": "amaro-founder",
+      "lastActivity": "2025-08-10T14:20:00.000Z",
+      "isOnline": false,
+      "unreadCount": 2,
+      "settings": {
+        "canAllMembersAdd": true,
+        "canAllMembersEdit": false,
+        "isPublic": false
+      },
+      "messages": [
+        {
+          "id": "msg-group-1",
+          "senderId": "amaro-founder",
+          "senderName": "Amaro",
+          "content": "Bem-vindos ao grupo de desenvolvimento do Infinit!",
+          "type": "text",
+          "timestamp": "2025-08-10T14:00:00.000Z"
+        },
+        {
+          "id": "msg-group-2",
+          "senderId": "fauder-user",
+          "senderName": "Fauder",
+          "content": "Ótimo! Vamos trabalhar juntos! 💪",
+          "type": "text",
+          "timestamp": "2025-08-10T14:20:00.000Z"
+        }
+      ],
+      "createdAt": "2025-08-10T14:00:00.000Z",
+      "updatedAt": "2025-08-10T14:20:00.000Z",
+      "lastMessage": {
+        "id": "msg-group-2",
+        "senderId": "fauder-user",
+        "senderName": "Fauder",
+        "content": "Ótimo! Vamos trabalhar juntos! 💪",
+        "type": "text",
+        "timestamp": "2025-08-10T14:20:00.000Z"
+      }
+    },
+    {
+      "id": "chat-gaming-group",
+      "participants": ["amaro-founder", "user-1", "user-2", "user-3"],
+      "type": "group",
+      "name": "Squad Gaming",
+      "avatar": "🎮",
+      "description": "Galera dos jogos online",
+      "admins": ["amaro-founder", "user-1"],
+      "createdBy": "amaro-founder",
+      "lastActivity": "2025-08-10T16:00:00.000Z",
+      "isOnline": true,
+      "unreadCount": 0,
+      "settings": {
+        "canAllMembersAdd": false,
+        "canAllMembersEdit": true,
+        "isPublic": true
+      },
+      "messages": [
+        {
+          "id": "msg-gaming-1",
+          "senderId": "user-1",
+          "senderName": "Ana Silva",
+          "content": "Quem topa uma partida hoje à noite?",
+          "type": "text",
+          "timestamp": "2025-08-10T16:00:00.000Z"
+        }
+      ],
+      "createdAt": "2025-08-10T12:00:00.000Z",
+      "updatedAt": "2025-08-10T16:00:00.000Z",
+      "lastMessage": {
+        "id": "msg-gaming-1",
+        "senderId": "user-1",
+        "senderName": "Ana Silva",
+        "content": "Quem topa uma partida hoje à noite?",
+        "type": "text",
+        "timestamp": "2025-08-10T16:00:00.000Z"
+      }
+    },
+    {
+      "id": "chat-work-group",
+      "participants": ["amaro-founder", "user-2", "user-4"],
+      "type": "group",
+      "name": "Equipe de Trabalho",
+      "avatar": "💼",
+      "description": "Discussões sobre projetos da empresa",
+      "admins": ["amaro-founder"],
+      "createdBy": "amaro-founder",
+      "lastActivity": "2025-08-10T13:45:00.000Z",
+      "isOnline": false,
+      "unreadCount": 1,
+      "settings": {
+        "canAllMembersAdd": true,
+        "canAllMembersEdit": false,
+        "isPublic": false
+      },
+      "messages": [
+        {
+          "id": "msg-work-1",
+          "senderId": "user-2",
+          "senderName": "Carlos Santos",
+          "content": "Precisamos revisar o projeto até sexta",
+          "type": "text",
+          "timestamp": "2025-08-10T13:45:00.000Z"
+        }
+      ],
+      "createdAt": "2025-08-09T09:00:00.000Z",
+      "updatedAt": "2025-08-10T13:45:00.000Z",
+      "lastMessage": {
+        "id": "msg-work-1",
+        "senderId": "user-2",
+        "senderName": "Carlos Santos",
+        "content": "Precisamos revisar o projeto até sexta",
+        "type": "text",
+        "timestamp": "2025-08-10T13:45:00.000Z"
+      }
+    }
+  ],
+  "lastUpdated": "2025-08-10T15:30:00.000Z"
+}

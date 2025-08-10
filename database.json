@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Usuário Teste",
+      "username": "teste",
+      "email": "teste@infinit.com",
+      "password": "123456",
+      "bio": "Usuário de teste do sistema",
+      "location": "São Paulo, SP",
+      "website": "https://infinit.com",
+      "birthDate": "1990-01-01",
+      "avatar": "",
+      "banner": "",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "achievements": [],
+      "stats": {
+        "messages": 0,
+        "friends": 0,
+        "groups": 0
+      }
+    }
+  ]
+}

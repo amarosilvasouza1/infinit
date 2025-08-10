@@ -1,0 +1,56 @@
+{
+  "friendships": [
+    {
+      "id": "friendship-1",
+      "user1": "amaro-founder",
+      "user2": "user-1",
+      "status": "accepted",
+      "createdAt": "2025-08-08T10:00:00.000Z",
+      "acceptedAt": "2025-08-08T10:30:00.000Z"
+    },
+    {
+      "id": "friendship-2",
+      "user1": "amaro-founder",
+      "user2": "user-2",
+      "status": "accepted",
+      "createdAt": "2025-08-07T14:00:00.000Z",
+      "acceptedAt": "2025-08-07T14:15:00.000Z"
+    },
+    {
+      "id": "friendship-3",
+      "user1": "amaro-founder",
+      "user2": "user-3",
+      "status": "pending",
+      "requestedBy": "amaro-founder",
+      "createdAt": "2025-08-10T16:30:00.000Z"
+    },
+    {
+      "id": "friendship-4",
+      "user1": "user-4",
+      "user2": "amaro-founder",
+      "status": "pending",
+      "requestedBy": "user-4",
+      "createdAt": "2025-08-10T15:00:00.000Z"
+    },
+    {
+      "id": "friendship-1754822171251",
+      "user1": "user-5",
+      "user2": "amaro-founder",
+      "status": "accepted",
+      "requestedBy": "user-5",
+      "createdAt": "2025-08-10T17:00:00.000Z",
+      "acceptedAt": "2025-08-10T10:36:11.251Z"
+    }
+  ],
+  "friend_requests": [],
+  "blocked_users": [
+    {
+      "id": "block-1",
+      "blocker": "amaro-founder",
+      "blocked": "spam-user",
+      "reason": "Spam",
+      "createdAt": "2025-08-09T12:00:00.000Z"
+    }
+  ],
+  "lastUpdated": "2025-08-10T10:36:11.251Z"
+}
