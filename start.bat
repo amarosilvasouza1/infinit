@@ -56,36 +56,57 @@ echo.
 echo Iniciando servidor na porta 3000...
 echo.
 
-REM Iniciar o servidor
+REM Verificar se ngrok está instalado
+where ngrok >nul 2>&1
+if errorlevel 1 (
+    echo ERRO: ngrok nao encontrado!
+    echo Instalando ngrok...
+    npm install -g ngrok
+    if errorlevel 1 (
+        echo ERRO: Nao consegui instalar ngrok
+        echo Tente executar como administrador
+        pause
+        exit /b 1
+    )
+)
+
+echo.
+echo Iniciando servidor Next.js...
 start /MIN cmd /c "npm start"
 
 echo Aguardando servidor inicializar...
-timeout /t 8 > nul
+timeout /t 10 > nul
 
 echo.
-echo Agora vou expor o servidor para internet...
+echo Verificando se servidor esta rodando...
+netstat -an | find "3000" > nul
+if errorlevel 1 (
+    echo ERRO: Servidor nao iniciou na porta 3000
+    echo Tentando iniciar novamente...
+    start /MIN cmd /c "npm start"
+    timeout /t 5 > nul
+)
+
 echo.
 echo ========================================
 echo          LINK PARA AMIGOS
 echo ========================================
 echo.
-echo MANTENHA ESTA JANELA ABERTA!
+echo IMPORTANTE: MANTENHA ESTA JANELA ABERTA!
 echo.
 echo Dados salvos em:
 echo    - database.json (usuarios)
 echo    - src\data\friends.json (amigos)
 echo    - src\data\chats.json (conversas)
 echo.
-echo O link global aparecera abaixo:
-echo    Compartilhe este link com seus amigos
-echo.
-echo ========================================
+echo Iniciando ngrok...
+echo O link aparecera abaixo:
 echo.
 
-REM Tentar iniciar ngrok
+REM Iniciar ngrok e manter janela aberta
 ngrok http 3000
 
 echo.
-echo Servidor parado!
-echo Todos os dados foram salvos no seu PC
-pause
+echo SERVIDOR PARADO!
+echo Pressione qualquer tecla para voltar ao menu
+pause > nul
