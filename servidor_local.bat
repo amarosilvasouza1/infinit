@@ -18,9 +18,7 @@ echo.
 echo 🔧 Instalando ngrok para expor servidor...
 call npm install -g ngrok
 if errorlevel 1 (
-    echo ❌ Erro ao instalar ngrok
-    pause
-    exit /b
+    echo ❌ Erro ao instalar ngrok - tentando continuar...
 )
 
 echo.
@@ -29,7 +27,7 @@ call npm run build
 if errorlevel 1 (
     echo ❌ Erro no build
     pause
-    exit /b
+    exit /b 1
 )
 
 echo.

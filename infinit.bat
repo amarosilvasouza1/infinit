@@ -1,113 +1,85 @@
 @echo off
-title INFINIT - Inicio Rapido
+title INFINIT - Menu Principal
+
+:menu
 cls
+echo.
+echo ========================================
+echo        INFINIT - MENU PRINCIPAL
+echo ========================================
+echo.
+echo 1. Iniciar Servidor (Recomendado)
+echo 2. Instalar Dependencias
+echo 3. Ver Dados Salvos
+echo 4. Fazer Backup
+echo 5. Limpar Cache
+echo 6. Sair
+echo.
+echo ========================================
+echo.
+set /p escolha="Escolha uma opcao (1-6): "
 
-echo.
-echo ⚡ INICIO RAPIDO - INFINIT ⚡
-echo.
-echo 1. Primeira vez (instalar tudo)
-echo 2. Iniciar servidor (ja instalado)
-echo 3. Ver dados salvos
-echo 4. Backup dos dados
-echo 5. Sair
-echo.
-set /p escolha="Digite sua opcao (1-5): "
-
-if "%escolha%"=="1" goto primeira_vez
-if "%escolha%"=="2" goto iniciar_servidor
-if "%escolha%"=="3" goto ver_dados
+if "%escolha%"=="1" goto iniciar
+if "%escolha%"=="2" goto instalar
+if "%escolha%"=="3" goto dados
 if "%escolha%"=="4" goto backup
-if "%escolha%"=="5" goto sair
+if "%escolha%"=="5" goto limpar
+if "%escolha%"=="6" goto sair
+
+echo Opcao invalida!
+timeout /t 2 > nul
 goto menu
 
-:primeira_vez
+:iniciar
 cls
 echo.
-echo 🔧 PRIMEIRA INSTALACAO
+echo INICIANDO SERVIDOR INFINIT...
 echo.
-echo Instalando dependencias...
+call start.bat
+goto menu
+
+:instalar
+cls
+echo.
+echo INSTALANDO DEPENDENCIAS...
+echo.
 call npm install
 echo.
 echo Instalando ngrok...
 call npm install -g ngrok
 echo.
-echo Criando arquivos de dados...
-call servidor_local.bat
-goto fim
+echo Instalacao concluida!
+pause
+goto menu
 
-:iniciar_servidor
+:dados
 cls
 echo.
-echo 🚀 INICIANDO SERVIDOR
+echo DADOS SALVOS NO SEU PC
+echo ========================================
 echo.
-if not exist "node_modules" (
-    echo ⚠️  Dependencias nao encontradas!
-    echo Execute a opcao 1 primeiro
-    pause
-    goto menu
-)
-
-echo Verificando build...
-if not exist ".next" (
-    echo 🏗️  Fazendo build...
-    call npm run build
-)
-
-echo.
-echo 📊 Status dos dados:
-if exist "database.json" (
-    echo ✅ database.json - OK
-) else (
-    echo ❌ database.json - CRIANDO...
-    echo {"users":[{"id":"1","name":"Admin","username":"admin","email":"admin@infinit.com","password":"123456","bio":"Administrador","avatar":"","createdAt":"2025-01-01T00:00:00.000Z"}]} > database.json
-)
-
-if exist "src\data\friends.json" (
-    echo ✅ friends.json - OK
-) else (
-    echo ❌ friends.json - CRIANDO...
-    mkdir src\data 2>nul
-    echo {"friends":[],"sentRequests":[],"receivedRequests":[]} > src\data\friends.json
-)
-
-if exist "src\data\chats.json" (
-    echo ✅ chats.json - OK
-) else (
-    echo ❌ chats.json - CRIANDO...
-    echo {"chats":[],"lastUpdated":""} > src\data\chats.json
-)
-
-echo.
-echo 🌐 Iniciando servidor e ngrok...
-echo.
-echo ⚠️  IMPORTANTE: Mantenha esta janela aberta!
-echo.
-start /MIN cmd /c "npm start"
-timeout /t 5 > nul
-ngrok http 3000
-goto fim
-
-:ver_dados
-cls
-echo.
-echo 📊 DADOS SALVOS NO SEU PC
-echo.
-echo 📁 Localizacao dos arquivos:
+echo Localizacao dos arquivos:
 echo    %cd%\database.json
-echo    %cd%\src\data\friends.json
+echo    %cd%\src\data\friends.json  
 echo    %cd%\src\data\chats.json
 echo.
 
 if exist "database.json" (
-    echo 👥 USUARIOS REGISTRADOS:
-    powershell -Command "Get-Content database.json | ConvertFrom-Json | Select-Object -ExpandProperty users | ForEach-Object { Write-Host \"   - $($_.name) (@$($_.username))\" }"
-    echo.
+    echo database.json - OK
+) else (
+    echo database.json - NAO EXISTE
 )
 
 if exist "src\data\friends.json" (
-    echo 🤝 AMIZADES:
-    powershell -Command "$friends = Get-Content src\data\friends.json | ConvertFrom-Json; Write-Host \"   Amigos: $($friends.friends.Count)\"; Write-Host \"   Solicitacoes enviadas: $($friends.sentRequests.Count)\"; Write-Host \"   Solicitacoes recebidas: $($friends.receivedRequests.Count)\""
-    echo.
+    echo friends.json - OK  
+) else (
+    echo friends.json - NAO EXISTE
+)
+
+if exist "src\data\chats.json" (
+    echo chats.json - OK
+) else (
+    echo chats.json - NAO EXISTE
 )
 
 echo.
@@ -117,34 +89,39 @@ goto menu
 :backup
 cls
 echo.
-echo 💾 BACKUP DOS DADOS
+echo FAZENDO BACKUP DOS DADOS...
 echo.
-set data_atual=%date:~-4%-%date:~3,2%-%date:~0,2%_%time:~0,2%-%time:~3,2%-%time:~6,2%
-set data_atual=%data_atual: =0%
-set pasta_backup=backup_%data_atual%
 
-mkdir "%pasta_backup%" 2>nul
+set "timestamp=%date:~-4%-%date:~3,2%-%date:~0,2%_%time:~0,2%-%time:~3,2%-%time:~6,2%"
+set "timestamp=%timestamp: =0%"
+set "backup_folder=backup_%timestamp%"
 
-echo Criando backup em: %pasta_backup%
-copy "database.json" "%pasta_backup%\" 2>nul
-copy "src\data\*.json" "%pasta_backup%\" 2>nul
+mkdir "%backup_folder%" 2>nul
 
-echo.
-echo ✅ Backup criado com sucesso!
-echo    Pasta: %pasta_backup%
+if exist "database.json" copy "database.json" "%backup_folder%\" >nul
+if exist "src\data\friends.json" copy "src\data\friends.json" "%backup_folder%\" >nul  
+if exist "src\data\chats.json" copy "src\data\chats.json" "%backup_folder%\" >nul
+
+echo Backup criado em: %backup_folder%
 echo.
 pause
 goto menu
 
-:sair
-exit
-
-:fim
+:limpar
+cls
 echo.
-echo Pressione qualquer tecla para voltar ao menu...
-pause > nul
+echo LIMPANDO CACHE...
+echo.
+if exist ".next" rmdir /s /q ".next"
+if exist "node_modules\.cache" rmdir /s /q "node_modules\.cache"
+echo Cache limpo!
+pause
 goto menu
 
-:menu
+:sair
 cls
-goto :eof
+echo.
+echo Obrigado por usar o INFINIT!
+echo.
+timeout /t 2 > nul
+exit
