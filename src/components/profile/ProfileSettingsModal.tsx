@@ -108,7 +108,7 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                       key={theme.value}
                       onClick={() => updateProfile({ theme: theme.value as any })}
                       className={`p-3 rounded-lg border transition-all ${
-                        profile.theme === theme.value
+                        profile?.theme === theme.value
                           ? 'border-purple-500 bg-purple-500/20'
                           : 'border-gray-700 bg-gray-700 hover:bg-gray-600'
                       }`}

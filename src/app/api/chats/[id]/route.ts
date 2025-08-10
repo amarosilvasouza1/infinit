@@ -72,10 +72,10 @@ const writeChatsDatabase = (data: ChatsDatabase) => {
 // GET - Buscar conversa específica com mensagens
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const chatId = params.id;
+    const { id: chatId } = await params;
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get('userId');
     const limit = parseInt(searchParams.get('limit') || '50');
@@ -123,10 +123,10 @@ export async function GET(
 // POST - Enviar nova mensagem
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const chatId = params.id;
+    const { id: chatId } = await params;
     const body = await request.json();
     const { senderId, senderName, content, type = 'text', mediaUrl, duration } = body;
 
@@ -188,10 +188,10 @@ export async function POST(
 // PUT - Editar mensagem
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const chatId = params.id;
+    const { id: chatId } = await params;
     const body = await request.json();
     const { messageId, content, userId } = body;
 
@@ -243,10 +243,10 @@ export async function PUT(
 // DELETE - Deletar mensagem
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const chatId = params.id;
+    const { id: chatId } = await params;
     const { searchParams } = new URL(request.url);
     const messageId = searchParams.get('messageId');
     const userId = searchParams.get('userId');

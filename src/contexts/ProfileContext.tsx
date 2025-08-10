@@ -14,6 +14,10 @@ interface ProfileContextType {
   updateBio: (bio: string) => Promise<User>;
   updateStatus: (status: User['status']) => Promise<User>;
   updateCustomStatus: (status: string) => Promise<User>;
+  addToGallery: (item: any) => void;
+  removeFromGallery: (itemId: string) => void;
+  exportProfile: () => any;
+  importProfile: (data: any) => void;
   clearLocalStorageData: () => void;
   generateUniqueId: () => string;
 }
@@ -71,6 +75,27 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
 
   const generateUniqueId = generateUniqueProfileId;
 
+  // Funções de galeria (implementação simples)
+  const addToGallery = (item: any) => {
+    console.log('Adding to gallery:', item);
+    // Implementação futura
+  };
+
+  const removeFromGallery = (itemId: string) => {
+    console.log('Removing from gallery:', itemId);
+    // Implementação futura
+  };
+
+  // Funções de backup (implementação simples)
+  const exportProfile = () => {
+    return user ? { ...user } : null;
+  };
+
+  const importProfile = (data: any) => {
+    console.log('Importing profile:', data);
+    // Implementação futura
+  };
+
   const value: ProfileContextType = {
     profile: user,
     loading,
@@ -81,6 +106,10 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
     updateBio,
     updateStatus,
     updateCustomStatus,
+    addToGallery,
+    removeFromGallery,
+    exportProfile,
+    importProfile,
     clearLocalStorageData,
     generateUniqueId
   };

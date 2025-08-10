@@ -19,7 +19,7 @@ function readDatabase() {
 // GET - Buscar usuário por ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params;

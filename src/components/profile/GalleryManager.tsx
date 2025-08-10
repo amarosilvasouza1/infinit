@@ -81,7 +81,7 @@ export default function GalleryManager({ isOpen, onClose }: GalleryManagerProps)
           
           <div className="flex items-center justify-between mt-4">
             <p className="text-gray-400">
-              {profile.gallery.length} itens na galeria
+              {profile?.gallery?.length || 0} itens na galeria
             </p>
             
             <div className="flex space-x-3">
@@ -155,7 +155,7 @@ export default function GalleryManager({ isOpen, onClose }: GalleryManagerProps)
 
         {/* Gallery Grid */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
-          {profile.gallery.length === 0 ? (
+          {(profile?.gallery?.length || 0) === 0 ? (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">📷</div>
               <h3 className="text-xl font-semibold text-white mb-2">Galeria vazia</h3>
@@ -169,22 +169,22 @@ export default function GalleryManager({ isOpen, onClose }: GalleryManagerProps)
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {profile.gallery.map((item) => (
+              {(profile?.gallery || []).map((item) => (
                 <div
                   key={item.id}
                   className={`relative group cursor-pointer rounded-lg overflow-hidden transition-all ${
-                    selectedItems.includes(item.id) 
+                    selectedItems.includes(String(item.id)) 
                       ? 'ring-2 ring-purple-500 scale-95' 
                       : 'hover:scale-105'
                   }`}
-                  onClick={() => toggleSelection(item.id)}
+                  onClick={() => toggleSelection(String(item.id))}
                 >
                   {/* Image/Video */}
                   <div className="aspect-square">
                     {item.type === 'image' ? (
                       <img
                         src={item.url}
-                        alt={item.caption || 'Galeria'}
+                        alt={item.title || 'Galeria'}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -208,11 +208,11 @@ export default function GalleryManager({ isOpen, onClose }: GalleryManagerProps)
                     {/* Selection checkbox */}
                     <div className="absolute top-2 right-2">
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                        selectedItems.includes(item.id)
+                        selectedItems.includes(String(item.id))
                           ? 'bg-purple-600 border-purple-600'
                           : 'border-white bg-black/40'
                       }`}>
-                        {selectedItems.includes(item.id) && (
+                        {selectedItems.includes(String(item.id)) && (
                           <span className="text-white text-xs">✓</span>
                         )}
                       </div>
@@ -220,11 +220,11 @@ export default function GalleryManager({ isOpen, onClose }: GalleryManagerProps)
 
                     {/* Info overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                      {item.caption && (
-                        <p className="text-white text-sm mb-1 line-clamp-2">{item.caption}</p>
+                      {item.title && (
+                        <p className="text-white text-sm mb-1 line-clamp-2">{item.title}</p>
                       )}
                       <p className="text-gray-300 text-xs">
-                        {formatDate(item.uploadedAt)}
+                        {formatDate(new Date(item.date))}
                       </p>
                     </div>
                   </div>
