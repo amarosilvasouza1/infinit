@@ -1,12 +1,22 @@
 {
   "name": "infinit",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Plataforma moderna de comunicação e rede social",
+  "author": "Amaro Silva Souza",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amarosilvasouza1/infinit.git"
+  },
+  "homepage": "https://github.com/amarosilvasouza1/infinit",
+  "keywords": ["nextjs", "react", "chat", "social", "typescript"],
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "npm run build && npm start"
   },
   "dependencies": {
     "lucide-react": "^0.539.0",
